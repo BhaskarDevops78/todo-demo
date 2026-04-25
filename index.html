@@ -69,13 +69,13 @@
 
             <form id="loginForm" class="auth-form">
               <div class="field">
-                <label for="loginHandle">Handle</label>
+                <label for="loginEmail">Email</label>
                 <input
-                  id="loginHandle"
-                  name="handle"
-                  type="text"
-                  autocomplete="username"
-                  placeholder="@yourname"
+                  id="loginEmail"
+                  name="email"
+                  type="email"
+                  autocomplete="email"
+                  placeholder="you@example.com"
                   required
                 />
               </div>
@@ -119,6 +119,18 @@
               </div>
 
               <div class="field">
+                <label for="signupEmail">Email address</label>
+                <input
+                  id="signupEmail"
+                  name="email"
+                  type="email"
+                  autocomplete="email"
+                  placeholder="you@example.com"
+                  required
+                />
+              </div>
+
+              <div class="field">
                 <label for="signupPassword">Create a password</label>
                 <input
                   id="signupPassword"
@@ -146,8 +158,9 @@
 
             <p id="authMessage" class="form-message" aria-live="polite"></p>
             <p class="auth-footnote">
-              Accounts and posts are saved in this browser so the site works
-              immediately as a standalone demo.
+              This version uses a SQLite-backed API with email login. Start the
+              local server to enable sign in, posts, likes, comments, and
+              profile shares.
             </p>
           </section>
         </section>
