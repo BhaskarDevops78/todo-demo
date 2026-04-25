@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>VerseBloom | Poetry Circle</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="ambient-layer" aria-hidden="true">
+      <span class="ambient-shape ambient-shape--sun"></span>
+      <span class="ambient-shape ambient-shape--leaf"></span>
+      <span class="ambient-shape ambient-shape--mist"></span>
+    </div>
+
+    <div class="site-shell">
+      <header class="site-banner">
+        <p class="eyebrow">A home for shared lines and quiet thoughts</p>
+        <h1>VerseBloom</h1>
+        <p class="banner-copy">
+          Publish poems, respond with kindness, and pin the pieces you love to
+          your profile with your own reflection.
+        </p>
+      </header>
+
+      <main class="app-frame">
+        <section id="authView" class="auth-view">
+          <section class="story-panel panel">
+            <p class="section-kicker">Why people gather here</p>
+            <h2>Poetry feels better when it travels from one heart to another.</h2>
+            <p>
+              Share your writing, build a circle of readers, and carry someone
+              else&apos;s poem onto your profile with the thought it sparked in you.
+            </p>
+
+            <div class="story-grid">
+              <article class="story-card">
+                <h3>Write openly</h3>
+                <p>Post short poems, long poems, fragments, and midnight drafts.</p>
+              </article>
+              <article class="story-card">
+                <h3>Respond warmly</h3>
+                <p>Leave likes and comments that turn reading into conversation.</p>
+              </article>
+              <article class="story-card">
+                <h3>Share with context</h3>
+                <p>Re-share any poem to your profile with the note it inspired.</p>
+              </article>
+            </div>
+
+            <div class="floating-quote">
+              <p>&ldquo;Let every poem arrive like a lamp in someone else&apos;s room.&rdquo;</p>
+            </div>
+          </section>
+
+          <section class="auth-panel panel">
+            <div class="auth-tabs" role="tablist" aria-label="Authentication tabs">
+              <button
+                class="tab-button is-active"
+                type="button"
+                data-auth-mode="login"
+              >
+                Sign in
+              </button>
+              <button class="tab-button" type="button" data-auth-mode="signup">
+                Join VerseBloom
+              </button>
+            </div>
+
+            <form id="loginForm" class="auth-form">
+              <div class="field">
+                <label for="loginHandle">Handle</label>
+                <input
+                  id="loginHandle"
+                  name="handle"
+                  type="text"
+                  autocomplete="username"
+                  placeholder="@yourname"
+                  required
+                />
+              </div>
+
+              <div class="field">
+                <label for="loginPassword">Password</label>
+                <input
+                  id="loginPassword"
+                  name="password"
+                  type="password"
+                  autocomplete="current-password"
+                  placeholder="Your password"
+                  required
+                />
+              </div>
+
+              <button class="primary-button" type="submit">Enter your circle</button>
+            </form>
+
+            <form id="signupForm" class="auth-form hidden">
+              <div class="field">
+                <label for="signupName">Display name</label>
+                <input
+                  id="signupName"
+                  name="name"
+                  type="text"
+                  placeholder="How readers will know you"
+                  required
+                />
+              </div>
+
+              <div class="field">
+                <label for="signupHandle">Choose a handle</label>
+                <input
+                  id="signupHandle"
+                  name="handle"
+                  type="text"
+                  placeholder="@moonwriter"
+                  required
+                />
+              </div>
+
+              <div class="field">
+                <label for="signupPassword">Create a password</label>
+                <input
+                  id="signupPassword"
+                  name="password"
+                  type="password"
+                  autocomplete="new-password"
+                  placeholder="At least 6 characters"
+                  minlength="6"
+                  required
+                />
+              </div>
+
+              <div class="field">
+                <label for="signupBio">Short profile note</label>
+                <textarea
+                  id="signupBio"
+                  name="bio"
+                  rows="3"
+                  placeholder="Tell the community what your writing leans toward..."
+                ></textarea>
+              </div>
+
+              <button class="primary-button" type="submit">Create my profile</button>
+            </form>
+
+            <p id="authMessage" class="form-message" aria-live="polite"></p>
+            <p class="auth-footnote">
+              Accounts and posts are saved in this browser so the site works
+              immediately as a standalone demo.
+            </p>
+          </section>
+        </section>
+
+        <section id="dashboardView" class="dashboard hidden">
+          <header class="dashboard-topbar panel">
+            <div>
+              <p class="section-kicker">VerseBloom community</p>
+              <h2 class="dashboard-title">A gentle social home for poems</h2>
+            </div>
+
+            <nav class="view-switcher" aria-label="Dashboard views">
+              <button
+                id="feedTab"
+                class="view-button is-active"
+                type="button"
+                data-view="feed"
+              >
+                Community feed
+              </button>
+              <button
+                id="profileTab"
+                class="view-button"
+                type="button"
+                data-view="profile"
+              >
+                My profile
+              </button>
+            </nav>
+
+            <div class="user-chip-row">
+              <div id="loggedInUser" class="user-chip"></div>
+              <button id="logoutButton" class="secondary-button" type="button">
+                Log out
+              </button>
+            </div>
+          </header>
+
+          <p id="dashboardToast" class="toast hidden" aria-live="polite"></p>
+
+          <div class="dashboard-grid">
+            <aside class="panel sidebar-panel">
+              <div id="profileSummary"></div>
+
+              <div class="sidebar-stack">
+                <section class="mini-card">
+                  <p class="section-kicker">Writing prompt</p>
+                  <h3>Write about a place that remembers you.</h3>
+                  <p>
+                    It can be a street corner, a train station, or the window
+                    where you once waited.
+                  </p>
+                </section>
+
+                <section class="mini-card">
+                  <p class="section-kicker">Community rhythm</p>
+                  <p>
+                    Poems gather likes and comments, and every profile share
+                    keeps the original writer visible.
+                  </p>
+                </section>
+              </div>
+            </aside>
+
+            <section class="main-stage">
+              <section id="feedView" class="view-panel">
+                <section class="panel composer-panel">
+                  <p class="section-kicker">Publish a new poem</p>
+                  <h3>What wants to be said today?</h3>
+
+                  <form id="poemForm" class="poem-form">
+                    <div class="field">
+                      <label for="poemTitle">Title</label>
+                      <input
+                        id="poemTitle"
+                        name="title"
+                        type="text"
+                        maxlength="80"
+                        placeholder="Name your poem"
+                        required
+                      />
+                    </div>
+
+                    <div class="field">
+                      <label for="poemTheme">Theme or mood</label>
+                      <input
+                        id="poemTheme"
+                        name="theme"
+                        type="text"
+                        maxlength="60"
+                        placeholder="Monsoon, memory, healing..."
+                      />
+                    </div>
+
+                    <div class="field">
+                      <label for="poemContent">Poem</label>
+                      <textarea
+                        id="poemContent"
+                        name="content"
+                        rows="8"
+                        placeholder="Write the poem you want the community to read..."
+                        required
+                      ></textarea>
+                    </div>
+
+                    <button class="primary-button" type="submit">Publish poem</button>
+                  </form>
+                </section>
+
+                <section class="timeline-panel">
+                  <div class="timeline-heading">
+                    <div>
+                      <p class="section-kicker">Latest voices</p>
+                      <h3>Community feed</h3>
+                    </div>
+                    <p class="timeline-copy">
+                      Read poems, leave notes, and share the ones that stay with
+                      you to your profile.
+                    </p>
+                  </div>
+
+                  <div id="feedList" class="timeline-list"></div>
+                </section>
+              </section>
+
+              <section id="profileView" class="view-panel hidden">
+                <section id="profileHero" class="panel profile-hero"></section>
+
+                <div class="profile-columns">
+                  <section class="panel profile-column">
+                    <div class="timeline-heading compact">
+                      <div>
+                        <p class="section-kicker">Original work</p>
+                        <h3>Your poems</h3>
+                      </div>
+                    </div>
+                    <div id="profilePoems" class="profile-list"></div>
+                  </section>
+
+                  <section class="panel profile-column">
+                    <div class="timeline-heading compact">
+                      <div>
+                        <p class="section-kicker">Shared with thoughts</p>
+                        <h3>Your profile shares</h3>
+                      </div>
+                    </div>
+                    <div id="profileShares" class="profile-list"></div>
+                  </section>
+                </div>
+              </section>
+            </section>
+
+            <aside class="panel insights-panel">
+              <section>
+                <p class="section-kicker">At a glance</p>
+                <div id="communityStats" class="stats-grid"></div>
+              </section>
+
+              <section class="insight-note">
+                <p class="section-kicker">How profile sharing works</p>
+                <p>
+                  When you share a poem, it remains connected to the original
+                  writer and appears on your profile with your personal note.
+                </p>
+              </section>
+
+              <section class="insight-note">
+                <p class="section-kicker">A good comment can be simple</p>
+                <p>
+                  Try responding with the image that stayed with you, the line
+                  you felt, or the memory the poem opened.
+                </p>
+              </section>
+            </aside>
+          </div>
+        </section>
+      </main>
+    </div>
+
+    <div id="shareModal" class="modal hidden" role="dialog" aria-modal="true">
+      <div class="modal-card panel">
+        <button
+          id="closeShareModal"
+          class="icon-button"
+          type="button"
+          aria-label="Close share dialog"
+        >
+          &times;
+        </button>
+
+        <div id="sharePreview" class="share-preview"></div>
+
+        <form id="shareForm" class="share-form">
+          <input id="sharePoemId" name="poemId" type="hidden" />
+
+          <div class="field">
+            <label for="shareThought">
+              Add your own thought before sharing this poem to your profile
+            </label>
+            <textarea
+              id="shareThought"
+              name="thought"
+              rows="5"
+              maxlength="280"
+              placeholder="Why are you carrying this poem onto your profile?"
+              required
+            ></textarea>
+          </div>
+
+          <button class="primary-button" type="submit">Share to my profile</button>
+        </form>
+      </div>
+    </div>
+
+    <script src="app.js"></script>
+  </body>
+</html>
